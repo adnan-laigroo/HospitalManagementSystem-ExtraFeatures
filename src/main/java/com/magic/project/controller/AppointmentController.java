@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("hospital/appointment")
 public class AppointmentController {
+	
 	@Autowired
 	AppointmentService appServ;
 
