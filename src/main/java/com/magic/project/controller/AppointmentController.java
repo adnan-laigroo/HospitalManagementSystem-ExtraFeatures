@@ -16,7 +16,7 @@ public class AppointmentController {
 	
 	@Autowired
 	AppointmentService appServ;
-
+	//appointment id and prescription id are same
 	// Add a Appointment
 	@PostMapping("/add")
 	public ResponseEntity<Appointment> addAppointment(@Valid @RequestBody Appointment appointment) {
