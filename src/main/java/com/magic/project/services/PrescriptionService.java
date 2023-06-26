@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.itextpdf.text.DocumentException;
 import com.magic.project.models.Prescription;
 
 public interface PrescriptionService {
@@ -19,5 +20,7 @@ public interface PrescriptionService {
 	Prescription getPrescription(String appId);
 
 	Prescription updatePrescriptionTestResults(@Valid Prescription updatedPrescription, @Valid String appId);
+
+	byte[] generatePrescriptionPDF(String appId) throws DocumentException;
 
 }

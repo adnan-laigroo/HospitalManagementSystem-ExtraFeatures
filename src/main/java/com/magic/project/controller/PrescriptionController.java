@@ -1,8 +1,11 @@
 package com.magic.project.controller;
+import com.itextpdf.text.DocumentException;
 import com.magic.project.models.Prescription;
 import com.magic.project.services.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -59,5 +62,22 @@ public class PrescriptionController {
 		Prescription prescription = presServ.getPrescription(appId);
 		return ResponseEntity.status(HttpStatus.OK).body(prescription);
 	}
+	@GetMapping("/get/pdf/{appId}")
+    public ResponseEntity<byte[]> generatePrescriptionPDF(@PathVariable String appId) {
+        try {
+            byte[] pdfBytes = presServ.generatePrescriptionPDF(appId);
 
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDispositionFormData("attachment", "prescription.pdf");
+
+            return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+        } catch (DocumentException e) {
+            // Handle the exception appropriately
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        } catch (Exception e) {
+            // Handle any other exceptions
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 }

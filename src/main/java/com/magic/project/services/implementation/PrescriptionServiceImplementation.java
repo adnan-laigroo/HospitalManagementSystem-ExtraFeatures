@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itextpdf.text.DocumentException;
 import com.magic.project.handler.AppointmentNotConfirmedException;
 import com.magic.project.handler.DoctorNotFoundException;
 import com.magic.project.handler.MedicalTestNotFoundException;
@@ -21,6 +22,7 @@ import com.magic.project.models.Patient;
 import com.magic.project.models.PrescribedMedicine;
 import com.magic.project.models.PrescribedTest;
 import com.magic.project.models.Prescription;
+import com.magic.project.models.dto.PrescriptionGenerator;
 import com.magic.project.repositories.AppointmentRepository;
 import com.magic.project.repositories.DoctorRepository;
 import com.magic.project.repositories.MedicalTestRepository;
@@ -131,6 +133,15 @@ public class PrescriptionServiceImplementation implements PrescriptionService {
 			throw new PrescriptionNotFoundException("No prescription with ID " + appId);
 		}
 		return prescription;
+	}
+
+	@Override
+	public byte[] generatePrescriptionPDF(String appId) throws DocumentException{
+		Prescription prescription = presRepo.findById(appId).orElse(null);
+		if (prescription == null) {
+			throw new PrescriptionNotFoundException("No prescription with ID " + appId);
+		}
+		return PrescriptionGenerator.generatePrescriptionPDF(prescription);
 	}
 
 }

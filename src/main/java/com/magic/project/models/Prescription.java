@@ -1,7 +1,6 @@
 package com.magic.project.models;
 
 import java.util.List;
-import com.magic.project.models.PrescribedTest;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
