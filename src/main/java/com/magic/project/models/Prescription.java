@@ -9,7 +9,7 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 public class Prescription {
-
+	//appointment id and prescription id are same
 	@Id
 	@Pattern(regexp = "^A\\d{6}$", message = "Invalid Appointment ID format")
 	private String apId;
