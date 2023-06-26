@@ -1,29 +1,81 @@
 package com.magic.project.services.implementation;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.magic.project.handler.MedicalTestNotFoundException;
+import com.magic.project.models.MedicalTest;
 import com.magic.project.repositories.MedicalTestRepository;
 import com.magic.project.services.MedicalTestService;
 
+@Service
 public class MedicalTestServiceImplementation implements MedicalTestService {
 
 	@Autowired
 	MedicalTestRepository testRepo;
 
+	@Override
+	public void saveMedicalTest(@Valid MedicalTest medicalTest) {
+		medicalTest.setTestType(testNameToTypeMap.get(medicalTest.getTestName()));
+		testRepo.save(medicalTest);
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public MedicalTest deleteMedicalTest(@Valid String testName) {
+		MedicalTest medicalTest = testRepo.findById(testName).orElse(null);
+		if (medicalTest == null) {
+			throw new MedicalTestNotFoundException("No MedicalTest with ID " + testName);
+		}
+		testRepo.deleteById(testName);
+		return medicalTest;
+	}
+
+	@Override
+	public MedicalTest updateMedicalTest(@Valid MedicalTest updatedMedicalTest, @Valid String testName) {
+		MedicalTest medicalTest = testRepo.findById(testName).orElse(null);
+		if (medicalTest == null) {
+			throw new MedicalTestNotFoundException("No MedicalTest with ID " + testName);
+		}
+		updatedMedicalTest.setTestName(testName);
+		testRepo.save(updatedMedicalTest);
+		return updatedMedicalTest;
+	}
+
+	@Override
+	public List<MedicalTest> getMedicalTestList() {
+		List<MedicalTest> medicalTests = testRepo.findAll();
+		if (medicalTests.isEmpty()) {
+			throw new MedicalTestNotFoundException("No MedicalTests.");
+		}
+		return medicalTests;
+	}
+
+	@Override
+	public MedicalTest updateMedicalTestPrice(@Valid MedicalTest updatedMedicalTest, String testName) {
+		MedicalTest medicalTest = testRepo.findById(testName).orElse(null);
+		if (medicalTest == null) {
+			throw new MedicalTestNotFoundException("No MedicalTest with ID " + testName);
+		}
+		medicalTest.setTestPrice(updatedMedicalTest.getTestPrice());
+		testRepo.save(medicalTest);
+		return medicalTest;
+	}
+
+	@Override
+	public MedicalTest getMedicalTest(String testName) {
+		MedicalTest medicalTest = testRepo.findById(testName).orElse(null);
+		if (medicalTest == null) {
+			throw new MedicalTestNotFoundException("No MedicalTest with ID " + testName);
+		}
+		return medicalTest;
+	}
+
 	private static Map<String, String> testNameToTypeMap = new HashMap<>();
 	// Add mappings
 	static {

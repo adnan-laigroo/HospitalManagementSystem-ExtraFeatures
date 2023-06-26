@@ -1,12 +1,6 @@
 package com.magic.project.controller;
 import com.magic.project.models.Prescription;
-import com.magic.project.models.Receptionist;
-import com.magic.project.models.User;
-import com.magic.project.models.dto.ReceptionistDto;
-import com.magic.project.models.dto.ReceptionistUserMapper;
 import com.magic.project.services.PrescriptionService;
-import com.magic.project.services.ReceptionistService;
-import com.magic.project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +24,11 @@ public class PrescriptionController {
 	// delete a Prescription
 	@DeleteMapping("/delete/{appId}")
 	public ResponseEntity<Prescription> deletePrescription(@Valid @PathVariable String appId) {
-		Prescription Prescription = presServ.deletePrescription(appId);
-		return ResponseEntity.status(HttpStatus.OK).body(Prescription);
+		Prescription delPrescription= new Prescription();
+		 delPrescription = presServ.deletePrescription(appId);
+		return ResponseEntity.status(HttpStatus.OK).body(delPrescription);
 	}
+	
 
 	// update a Prescription by ID and Put request
 	@PutMapping("/update/{appId}")

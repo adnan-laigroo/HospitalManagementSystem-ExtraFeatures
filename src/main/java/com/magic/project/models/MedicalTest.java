@@ -3,7 +3,7 @@ package com.magic.project.models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
 @Entity
@@ -12,18 +12,13 @@ public class MedicalTest {
 	@NotBlank(message = "Test name is required")
 	@Id
 	private String testName;
-
+	@NotBlank(message = "Test Description is required")
 	private String testDescription;
-
+	@NotNull(message = "Test name is required")
 	@PositiveOrZero(message = "Test price must be a positive or zero value")
 	private double testPrice;
 
-	@Positive(message = "Quantity must be a positive value")
-	private int quantity;
-
-	@NotBlank(message = "Test type is required")
 	private String testType;
-
 
 	// Constructor, getters, and setters
 
@@ -51,14 +46,6 @@ public class MedicalTest {
 		this.testPrice = testPrice;
 	}
 
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
 	public String getTestType() {
 		return testType;
 	}
@@ -66,7 +53,5 @@ public class MedicalTest {
 	public void setTestType(String testType) {
 		this.testType = testType;
 	}
-
-
 
 }

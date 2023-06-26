@@ -30,7 +30,7 @@ public class MedicineController {
 	// Add a medicine
 	@PostMapping("/add")
 	public ResponseEntity<Medicine> addmedicine(@Valid @RequestBody Medicine medicine) {
-		medServ.savemedicine(medicine);
+		medServ.saveMedicine(medicine);
 		return ResponseEntity.status(HttpStatus.OK).body(medicine);
 	}
 
@@ -57,10 +57,10 @@ public class MedicineController {
 	}
 
 	// update a medicine Status by ID and Patch request
-	@PatchMapping("/update/status/{medicineName}")
-	public ResponseEntity<Medicine> updatemedicineStaus(@Valid @PathVariable String medicineName,
+	@PatchMapping("/update/quantity/{medicineName}")
+	public ResponseEntity<Medicine> updateMedicineQuantity(@Valid @PathVariable String medicineName,
 			@RequestBody Medicine updatedmedicine) {
-		Medicine medicine = medServ.updatemedicineStatus(updatedmedicine, medicineName);
+		Medicine medicine = medServ.updateMedicineQuantity(updatedmedicine, medicineName);
 		return ResponseEntity.status(HttpStatus.OK).body(medicine);
 	}
 

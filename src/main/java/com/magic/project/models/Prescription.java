@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 public class Prescription {
 
 	@Id
-	@Pattern(regexp = "^P\\d{6}$", message = "Invalid patId format")
+	@Pattern(regexp = "^A\\d{6}$", message = "Invalid Appointment ID format")
 	private String apId;
 
 	private String patientName;
@@ -20,6 +20,8 @@ public class Prescription {
 
 	private String symptom;
 
+	private String diagnosis;
+	
 	@ElementCollection
 	private List<PrescribedMedicine> prescribedMedicines;
 
@@ -82,6 +84,14 @@ public class Prescription {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public String getDiagnosis() {
+		return diagnosis;
+	}
+
+	public void setDiagnosis(String diagnosis) {
+		this.diagnosis = diagnosis;
 	}
 
 }

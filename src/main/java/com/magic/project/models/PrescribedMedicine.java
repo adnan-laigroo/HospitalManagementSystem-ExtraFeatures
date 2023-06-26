@@ -5,18 +5,19 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PrescribedMedicine {
 
-	private int medicineId;
+	private String medicineName;
 
 	private String dosage;
 
 	private String frequency;
 
-	public int getMedicineId() {
-		return medicineId;
+
+	public String getMedicineName() {
+		return medicineName;
 	}
 
-	public void setMedicineId(int medicineId) {
-		this.medicineId = medicineId;
+	public void setMedicineName(String medicineName) {
+		this.medicineName = medicineName;
 	}
 
 	public String getDosage() {

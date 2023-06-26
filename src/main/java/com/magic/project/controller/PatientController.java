@@ -1,6 +1,5 @@
 package com.magic.project.controller;
 
-import com.magic.project.models.Appointment;
 import com.magic.project.models.Patient;
 import com.magic.project.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +44,11 @@ public class PatientController {
 		List<Patient> patients = patServ.getPatientList();
 		return ResponseEntity.status(HttpStatus.OK).body(patients);
 	}
+
 	// get an Appointment
-		@GetMapping("/get/{patId}")
-		public ResponseEntity<Patient> getPatient(@PathVariable @Valid String patId) {
-			Patient patient = patServ.getPatient(patId);
-			return ResponseEntity.status(HttpStatus.OK).body(patient);
-		}
+	@GetMapping("/get/{patId}")
+	public ResponseEntity<Patient> getPatient(@PathVariable @Valid String patId) {
+		Patient patient = patServ.getPatient(patId);
+		return ResponseEntity.status(HttpStatus.OK).body(patient);
+	}
 }

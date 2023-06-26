@@ -54,6 +54,7 @@ public class ExceptionAndValidationHandler extends ResponseEntityExceptionHandle
 		ResponseError response = new ResponseError("Doctor Not Found", errorMessages);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 	}
+
 	@ExceptionHandler(ReceptionistNotFoundException.class)
 	public ResponseEntity<Object> handleReceptionistNotFoundException(ReceptionistNotFoundException ex) {
 		List<String> errorMessages = new ArrayList<>();
@@ -61,6 +62,7 @@ public class ExceptionAndValidationHandler extends ResponseEntityExceptionHandle
 		ResponseError response = new ResponseError("Receptionist Not Found", errorMessages);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 	}
+
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex) {
 		List<String> errorMessages = new ArrayList<>();
@@ -68,7 +70,7 @@ public class ExceptionAndValidationHandler extends ResponseEntityExceptionHandle
 		ResponseError response = new ResponseError("User Not Found", errorMessages);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 	}
-	
+
 	@ExceptionHandler(AppointmentNotConfirmedException.class)
 	public ResponseEntity<Object> handleAppointmentException(AppointmentNotConfirmedException ex) {
 		List<String> errorMessages = new ArrayList<>();
@@ -84,11 +86,28 @@ public class ExceptionAndValidationHandler extends ResponseEntityExceptionHandle
 		ResponseError response = new ResponseError("Username Not Found Exception", errorMessages);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 	}
+
 	@ExceptionHandler(PrescriptionNotFoundException.class)
 	public ResponseEntity<Object> handlePrescriptionNotFoundException(PrescriptionNotFoundException ex) {
 		List<String> errorMessages = new ArrayList<>();
 		errorMessages.add(ex.getMessage());
 		ResponseError response = new ResponseError("Prescription Not Found Exception", errorMessages);
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+	}
+
+	@ExceptionHandler(MedicineNotFoundException.class)
+	public ResponseEntity<Object> handleMedicineNotFoundException(MedicineNotFoundException ex) {
+		List<String> errorMessages = new ArrayList<>();
+		errorMessages.add(ex.getMessage());
+		ResponseError response = new ResponseError("Medicine Not Found Exception", errorMessages);
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+	}
+	
+	@ExceptionHandler(MedicalTestNotFoundException.class)
+	public ResponseEntity<Object> handleMedicalTestNotFoundException(MedicalTestNotFoundException ex) {
+		List<String> errorMessages = new ArrayList<>();
+		errorMessages.add(ex.getMessage());
+		ResponseError response = new ResponseError("Medicine Test Not Found Exception", errorMessages);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 	}
 

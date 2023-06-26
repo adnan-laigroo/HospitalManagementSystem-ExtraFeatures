@@ -29,8 +29,8 @@ public class MedicalTestController {
 
 	// Add a MedicalTest
 	@PostMapping("/add")
-	public ResponseEntity<MedicalTest> addMedicalTest(@Valid @RequestBody MedicalTest MedicalTest) {
-		testServ.savemedicalTest(MedicalTest);
+	public ResponseEntity<MedicalTest> addMedicalTest(@Valid @RequestBody MedicalTest medicalTest) {
+		testServ.saveMedicalTest(medicalTest);
 		return ResponseEntity.status(HttpStatus.OK).body(medicalTest);
 	}
 
@@ -58,10 +58,10 @@ public class MedicalTestController {
 
 	// update a MedicalTest Status by ID and Patch request
 	@PatchMapping("/update/status/{testName}")
-	public ResponseEntity<MedicalTest> updateMedicalTestStaus(@Valid @PathVariable String testName,
+	public ResponseEntity<MedicalTest> updateMedicalTestPrice(@Valid @PathVariable String testName,
 			@RequestBody MedicalTest updatedMedicalTest) {
-		MedicalTest MedicalTest = testServ.updateMedicalTestResult(updatedMedicalTest,testName);
-		return ResponseEntity.status(HttpStatus.OK).body(MedicalTest);
+		MedicalTest medicalTest = testServ.updateMedicalTestPrice(updatedMedicalTest,testName);
+		return ResponseEntity.status(HttpStatus.OK).body(medicalTest);
 	}
 
 	// get an MedicalTest
