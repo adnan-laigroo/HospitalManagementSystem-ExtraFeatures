@@ -11,7 +11,6 @@ public class PrescribedMedicine {
 
 	private String frequency;
 
-
 	public String getMedicineName() {
 		return medicineName;
 	}
