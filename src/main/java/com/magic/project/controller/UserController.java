@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("hospital/user")
+@RequestMapping("management/user")
 public class UserController {
 	@Autowired
 	UserService userServ;

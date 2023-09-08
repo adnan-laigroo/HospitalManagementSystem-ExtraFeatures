@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.project</groupId>
 	<packaging>jar</packaging>
-	<artifactId>HospitalManagementSystem-ExtraFeatures</artifactId>
+	<artifactId>AgencyManagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HospitalManagementSystem-ExtraFeatures</name>
+	<name>AgencyManagement</name>
 	<description>Project</description>
 	<properties>
 		<java.version>1.8</java.version>
